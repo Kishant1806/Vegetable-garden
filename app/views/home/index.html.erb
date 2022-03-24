@@ -1,0 +1,64 @@
+<div class="container mb-5">
+<div class="row">
+<h1 style="font-size:50px;text-align:center;color:green;background-color:lightgrey;"> <b>Welcome to Vegetable World</b></h1>
+
+
+<%= link_to "Add Vegetable", new_vegetable_path,class:"btn btn-info"%><br>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Peoples Vegetable Gaden
+      <img src ="/assets/veg.jpeg" alt= ""> 
+      </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link active" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Contact Us", contact_us_path, class: "nav-link active" %>
+       </li>
+
+        <li class="nav-item">
+         <%= link_to "About Us", about_us_path, class: "nav-link active" %>
+       </li>
+      
+      </ul>
+      <form class="d-flex" method="get">
+        <input class="form-control me-2" name ="q" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<% @vegetables.each do |ele|  %>
+  <div class="col-md-6">
+    <div class="card" style="width: 20rem;">
+  <%= image_tag(ele.avatar_img, class: "card-img-top") if ele.avatar_img.attached?%>
+      <div class="card-body">
+        <p class="card-text"><b>Name : </b><%=ele.name%></p>
+        <p class="card-text"><b>Price : </b><%=ele.price%></p>
+        <p class="card-text"><b>Qty : </b><%=ele.qty%></p>
+        <p class="card-text"><b>Description </b><%=ele.description%><br>
+        <br>
+        <%= link_to 'Edit Vegetable',  edit_vegetable_path(ele.id), class:"btn btn-warning" %><br>
+        <%= link_to 'Delete', vegetable_path(ele.id), method: :delete ,class:"btn btn-danger" %><br></p>
+    </div>
+  </div>
+  </div>
+<%end%>
+<%= will_paginate @vegetables, render: BootstrapPagination::Rails%>
+</div>
+</div>
+
+<div >
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete ,class:"btn btn-danger" %><br>
+<%= link_to 'Edit',  edit_user_registration_path, class:"btn btn-secondary" %><br>
+
+</div>

@@ -1,0 +1,17 @@
+<h1>New Article</h1>
+
+<%= form_with model: @vegetables do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :avatar_img %><br>
+    <%= form.file_field :avatar_img %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
